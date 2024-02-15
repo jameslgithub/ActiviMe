@@ -1,0 +1,27 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ca7d7d;
+    padding: 5px 1%;
+}
+
+.logo{
+    width: 120px;
+    cursor: pointer;
+}
+
+ul{
+    flex: 1;
+    list-style: none;
+    text-align: center;
+}
+
+ul li{
+    display: inline-block;
+    margin: 10px 20px;
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    cursor: pointer;
+}
