@@ -4,9 +4,9 @@ import GoogleMapReact from "google-map-react";
 
 const Map = ({ coordinates, setCoordinates }) => {
   return (
-  <Box width = {'full'} height = {'full'}>
+  <Box width = {'100vw'} height = {'100vh'}>
     <GoogleMapReact 
-        bootstrapURLKeys={{ key: "AIzaSyCQsrkKVU83XeXLG72hTzcT-OgFFocqp_s" }} 
+        bootstrapURLKeys={{ key: "AIzaSyDT96oGVCan6TEKn94L9Zs2CyANrDCGWhE" }} 
         defaultCenter={coordinates} 
         center={coordinates}
         defaultZoom={10}
@@ -15,7 +15,7 @@ const Map = ({ coordinates, setCoordinates }) => {
         onChange={() => {}}
         onChildClick={() => {}}
     >
-    </GoogleMapReact>;
+    </GoogleMapReact>
   </Box> 
   );
 } ;
