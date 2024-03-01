@@ -25,7 +25,7 @@ const Navbar = () => {
         }).then(    //will send get request to server with query in url
             (response)=>{
             //console.log(JSON.parse(response.json()))
-            console.log(response)
+            console.log(response.body)
             
         }
         )
@@ -40,8 +40,8 @@ const Navbar = () => {
                 <li>Review</li>
                 <li>Login</li>
                 <form onSubmit={ handleFormsubmit}>
-                <input  type="text" name='location' value={formvalue.location } onChange={ handleInput}  className='form-control'  placeholder='Address, Neighborhood' />
-                    <input  type="text" name='test' value={formvalue.test } onChange={ handleInput}  className='form-control'  placeholder='test...' />
+                    <input  type="text" name='search' value={formvalue.search } onChange={ handleInput}  className='form-control'  placeholder='Activity' />
+                    <input  type="text" name='location' value={formvalue.location } onChange={ handleInput}  className='form-control'  placeholder='Address, Neighborhood' />
                     <button className='form-control btn btn-success '>Submit</button>
                 </form>
                 
