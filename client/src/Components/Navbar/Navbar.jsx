@@ -4,7 +4,7 @@ import logo from '../../assets/activity.png'
 import { useState } from 'react';
 
 const Navbar = () => {
-    const [formvalue, setFormvalue]= useState({test: '' });
+    const [formvalue, setFormvalue]= useState({search: '' , location: ''});
     const handleInput =(e)=>{
         const { name, value}= e.target;
         setFormvalue({...formvalue, [name]:value});
@@ -23,7 +23,8 @@ const Navbar = () => {
                 <li>Review</li>
                 <li>Login</li>
                 <form onSubmit={ handleFormsubmit}>
-                    <input  type="text" name='test' value={formvalue.test } onChange={ handleInput}  className='form-control'  placeholder='test...' />
+                    <input  type="text" name='search'  value={formvalue.search } onChange={ handleInput}  className='form-control'  placeholder='Things to do, Activities' />
+                    <input  type="text" name='location' value={formvalue.location } onChange={ handleInput}  className='form-control'  placeholder='Address, Neighborhood' />
                     <button className='form-control btn btn-success '>Submit</button>
                 </form>
                 
