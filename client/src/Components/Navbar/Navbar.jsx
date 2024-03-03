@@ -13,23 +13,21 @@ const Navbar = () => {
       const handleFormsubmit= async (e)=>{
         e.preventDefault();
         console.log(formvalue)
-        let x = formvalue
-        
-        await fetch("/search",{
+
+        await fetch("/search",{ //send to server params
             method: "POST",
             body:JSON.stringify(formvalue),
             headers: {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
               },
-        }).then(    //will send get request to server with query in url
-            (response)=>{
+        }).then(   //getting response from server
+            response=>response.json()
+        ).then((data)=>{
             //console.log(JSON.parse(response.json()))
-            console.log(response.body)
-            
+            console.log(data["places"])
         }
         )
-
       }
     return (
         <div className="navbar">
