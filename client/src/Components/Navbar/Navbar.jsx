@@ -2,9 +2,14 @@ import React from "react"
 import './Navbar.css'
 import logo from '../../assets/activity.png'
 import { useState } from 'react';
+import { Flex } from "@chakra-ui/react";
+import Places from "../Places/Places";
 
 const Navbar = () => {
     const [formvalue, setFormvalue]= useState({search: '' , location: ''});
+    const [data, setData] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleInput =(e)=>{
         const { name, value}= e.target;
         setFormvalue({...formvalue, [name]:value});
@@ -12,28 +17,37 @@ const Navbar = () => {
       }
       const handleFormsubmit= async (e)=>{
         e.preventDefault();
-        console.log(formvalue)
+        // console.log(formvalue)
 
         await fetch("/search",{ //send to server params
             method: "POST",
             body:JSON.stringify(formvalue),
             headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
                 // 'Content-Type': 'application/x-www-form-urlencoded',
               },
         }).then(   //getting response from server
-            response=>response.json()
+            (response)=>response.json()
         ).then((data)=>{
-            //console.log(JSON.parse(response.json()))
-            console.log(data["places"])
+            console.log(data)
+            setData(data)
+            setIsLoading(false)
+            // console.log(JSON.parse(response.json()))
+            // console.log(data["places"])
         }
         )
       }
     return (
-        <div className="navbar">
+        <Flex
+        position={"absolute"}
+        top={0}
+        left={0}
+        width={'100vw'}
+        zIndex={9999}>
+            <div className="navbar">
             <img src={logo} alt="" className="logo"/> 
             <ul>
-                <li>asd</li>
                 <li>Home</li>
                 <li>Review</li>
                 <li>Login</li>
@@ -42,9 +56,27 @@ const Navbar = () => {
                     <input  type="text" name='location' value={formvalue.location } onChange={ handleInput}  className='form-control'  placeholder='Address, Neighborhood' />
                     <button className='form-control btn btn-success '>Submit</button>
                 </form>
+             </ul>
+        <Places places = { data } isLoading={isLoading}/>
+
+         </div>
+
+        </Flex>
+        // <div className="navbar">
+        //     <img src={logo} alt="" className="logo"/> 
+        //     <ul>
+        //         <li>asd</li>
+        //         <li>Home</li>
+        //         <li>Review</li>
+        //         <li>Login</li>
+        //         <form onSubmit={ handleFormsubmit}>
+        //             <input  type="text" name='search' value={formvalue.search } onChange={ handleInput}  className='form-control'  placeholder='Activity' />
+        //             <input  type="text" name='location' value={formvalue.location } onChange={ handleInput}  className='form-control'  placeholder='Address, Neighborhood' />
+        //             <button className='form-control btn btn-success '>Submit</button>
+        //         </form>
                 
-            </ul>
-        </div>
+        //      </ul>
+        //  </div>
     )
 }
 
