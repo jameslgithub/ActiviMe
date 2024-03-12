@@ -8,7 +8,7 @@ import Places from "../Places/Places";
 const Navbar = () => {
     const [formvalue, setFormvalue]= useState({search: '' , location: ''});
     const [data, setData] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleInput =(e)=>{
         const { name, value}= e.target;
@@ -29,9 +29,10 @@ const Navbar = () => {
               },
         }).then(   //getting response from server
             (response)=>response.json()
-        ).then((data)=>{
-            console.log(data)
-            setData(data)
+        ).then((reponseData)=>{
+            console.log(reponseData)
+            setData(reponseData.places) //.places is the array 
+            
             setIsLoading(false)
             // console.log(JSON.parse(response.json()))
             // console.log(data["places"])

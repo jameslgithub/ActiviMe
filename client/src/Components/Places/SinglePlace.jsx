@@ -3,7 +3,8 @@ import React from 'react'
 const SinglePlace = ({place}) => {
   return (
     <div >
-        {place.name}
+       {place.name}
+       
     </div>
   )
 }

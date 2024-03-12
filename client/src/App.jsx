@@ -38,7 +38,7 @@ const App = () => {
     maxHeight={"100vh"}>
       <Navbar/>
       <Places places = { places } isLoading={isLoading}/>
-      <Map setCoordinates={setCoordinates} coordinates={coordinates}/>;
+      <Map setCoordinates={setCoordinates} coordinates={coordinates} />;
     </Flex>
   )
 }
