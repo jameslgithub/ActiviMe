@@ -31,7 +31,7 @@ const Places = ( {places, isLoading}) => {
     px={2}
     zIndex={1}> 
 
-      { <Flex flex={1} overflowY={"scroll"} mt={'auto'} direction={"column"} width={'36vw'} zIndex={0}>
+      { <Flex justifyItems={'stretch'} position={'relative'}flex={1} bg={'white'}overflowY={"scroll"} mt={'auto'} direction={"column"} width={'36vw'} zIndex={0}>
         {      
           places.map((place,i) => <SinglePlace place={place} key={i}/>)
           

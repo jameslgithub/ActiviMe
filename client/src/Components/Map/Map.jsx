@@ -4,7 +4,7 @@ import GoogleMapReact from "google-map-react";
 
 const Map = ({ coordinates, setCoordinates }) => {
   return (
-  <Box width = {'67vw'} height = {'100vh'}>
+  <Box width = {'100vw'} height = {'100vh'} right={'100px'}>
     <GoogleMapReact 
         bootstrapURLKeys={{ key: "AIzaSyDT96oGVCan6TEKn94L9Zs2CyANrDCGWhE" }} 
         defaultCenter={coordinates} 

@@ -32,10 +32,11 @@ const App = () => {
     justifyContent={'center'}
     alignItems={'center'}
     position={'relative'}
-    width={"100vw"}
+    width={"99vw"}
     height={"100vh"}
     maxWidth={"100vw"}
-    maxHeight={"100vh"}>
+    maxHeight={"100vh"}
+    padding={0}>
       <Navbar/>
       <Places places = { places } isLoading={isLoading}/>
       <Map setCoordinates={setCoordinates} coordinates={coordinates} />;

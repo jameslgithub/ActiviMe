@@ -46,6 +46,9 @@ app.post("/search",(req,res)=>{ //user searches for location and activity
              "latitidue":data.places[i]?.location?.latitude,
             "longitude":data.places[i]?.location?.longitude,
              "summary":data.places[i]?.editorialSummary?.text,
+            //  "photoUri": JSON.stringify('https://places.googleapis.com/v1/'+data.places[i]?.photos?.[0]?.name+'/media'),
+            // "photoUri":data.places[i]?.photos?.[0],
+
              "photoUri":data.places[i]?.photos?.[0]?.authorAttributions?.[0]?.photoUri,
         }
         )
@@ -53,7 +56,7 @@ app.post("/search",(req,res)=>{ //user searches for location and activity
         
        
     }
-     //console.log(top5DestinationInfo)
+     console.log(top5DestinationInfo)
 
     res.json({ "places":top5DestinationInfo})
    
