@@ -10,20 +10,16 @@ const app=express()
 const top5dests=[] //response from text search
 
 app.use(express.json())
-// /*
-// app.get("/api",(req, res)=>{ //testing function
-//     console.log("ASD")
-//     res.json({"users":["userOne","userTwo","userThree"]})
-// })
-// */
 
 app.post("/search",(req,res)=>{ //user searches for location and activity
    let top5DestinationInfo=[] //response from text search
+   
    console.log("recieved on search enter "); //show that server got client
    //still need to add conditionals
     
    //now send to google text search new on google places api
-   fetch("https://places.googleapis.com/v1/places:searchText",{
+    async function getTopDest(){
+        await fetch("https://places.googleapis.com/v1/places:searchText",{
     method:"POST",
     headers:{
         "Content-Type": "application/json",
@@ -36,32 +32,28 @@ app.post("/search",(req,res)=>{ //user searches for location and activity
     })
    }).then((response)=>response.json())
    .then((data)=>{
-    console.log(data)
     for(let i =0; i<5;i++){
         if (data["places"][i]){
-        top5DestinationInfo.push({  //using optional chaining to error check for properties that may or may not exist
-            "name": data.places[i]?.displayName?.text,
-            "priceLevel":data.places[i]?.priceLevel,
-            "address": data.places[i]?.formattedAddress,
-             "latitidue":data.places[i]?.location?.latitude,
-            "longitude":data.places[i]?.location?.longitude,
-             "summary":data.places[i]?.editorialSummary?.text,
-            //  "photoUri": JSON.stringify('https://places.googleapis.com/v1/'+data.places[i]?.photos?.[0]?.name+'/media'),
-            // "photoUri":data.places[i]?.photos?.[0],
-
-             "photoUri":data.places[i]?.photos?.[0]?.authorAttributions?.[0]?.photoUri,
-        }
-        )
-    }
-        
-       
-    }
-     console.log(top5DestinationInfo)
-
+            top5DestinationInfo.push({  //using optional chaining to error check for properties that may or may not exist
+                "name": data.places[i]?.displayName?.text,
+                "priceLevel":data.places[i]?.priceLevel,
+                "address": data.places[i]?.formattedAddress,
+                "latitidue":data.places[i]?.location?.latitude,
+                "longitude":data.places[i]?.location?.longitude,
+                "summary":data.places[i]?.editorialSummary?.text,
+                "photoName":data.places[i]?.photos[0]?.name,
+                "maxWidth":data.places[i]?.photos[0]?.widthPx,
+                "maxHeight":data.places[i]?.photos[0]?.heightPx
+            })
+            console.log(top5DestinationInfo)
+             
+    }}})
+    console.log(top5DestinationInfo)
     res.json({ "places":top5DestinationInfo})
-   
-   })
-})
+    }
+    getTopDest()  
+    }
+    )
 
 //listening on port 5000
 app.listen(5000,()=>{

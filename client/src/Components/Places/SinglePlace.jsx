@@ -63,7 +63,8 @@ const SinglePlace = ({place}) => {
           width={"120px"}
           height={"120px"}
           rounded="lg"
-          src = {place.photoUri ? place.photoUri : "https://explorelompoc.com/wp-content/uploads/2021/06/food_placeholder.jpg"}/>
+          src = {`https://places.googleapis.com/v1/${place.photoName}/media?maxWidthPx=${place.maxWidth}&key=AIzaSyDT96oGVCan6TEKn94L9Zs2CyANrDCGWhE`}
+          />
         </Flex>
           </Flex>
           </Flex>
