@@ -24,7 +24,7 @@ app.post("/search",(req,res)=>{ //user searches for location and activity
     headers:{
         "Content-Type": "application/json",
         'X-Goog-Api-Key':"AIzaSyDT96oGVCan6TEKn94L9Zs2CyANrDCGWhE", //could prob remove some of field mask for performance
-        'X-Goog-FieldMask': 'places.id,places.name,places.displayName,places.formattedAddress,places.priceLevel,places.location,places.editorialSummary,places.photos',
+        'X-Goog-FieldMask': 'places.id,places.name,places.displayName,places.formattedAddress,places.priceLevel,places.location,places.editorialSummary,places.photos,places.rating,places.userRatingCount',
     },
     body: JSON.stringify({
         "textQuery": req.body["search"]+" in "+req.body["location"], //in forces a list of all activities may have to parse out user input to prevent further errors
@@ -43,7 +43,9 @@ app.post("/search",(req,res)=>{ //user searches for location and activity
                 "summary":data.places[i]?.editorialSummary?.text,
                 "photoName":data.places[i]?.photos[0]?.name,
                 "maxWidth":data.places[i]?.photos[0]?.widthPx,
-                "maxHeight":data.places[i]?.photos[0]?.heightPx
+                "maxHeight":data.places[i]?.photos[0]?.heightPx,
+                "rating":data.places[i]?.rating,
+                "userRatingCount":data.places[i]?.userRatingCount
             })
             console.log(top5DestinationInfo)
              

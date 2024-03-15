@@ -30,7 +30,7 @@ const Navbar = () => {
         }).then(   //getting response from server
             (response)=>response.json()
         ).then((reponseData)=>{
-            console.log(reponseData)
+            console.log(reponseData.places)
             setData(reponseData.places) //.places is the array 
             
             setIsLoading(false)
